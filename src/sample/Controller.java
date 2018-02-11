@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import java.util.List;
 public class Controller {
     int a = 0;
     boolean end = false;
+    int zwyziestwa0=0;
+    int zwyciestwaX=0;
     ArrayList<Field> fields;
 
 
@@ -30,14 +33,54 @@ public class Controller {
     @FXML
     Button button00, button01, button02, button10, button11, button12, button20, button21, button22,buttonagain;
 
+    @FXML
+    Label winX,win0,whonow;
+
+    private void dlaX(){
+winX.setText(String.valueOf(zwyciestwaX));
+    }
+    private void dla0(){
+        win0.setText(String.valueOf(zwyziestwa0));
+    }
 
     private void ustawnaX(Button button) {
         button.setText(String.valueOf('X'));
 
     }
+    private void whoNow(){
+        if(a%2==0)
+            whonow.setText(String.valueOf("O"));
+        else
+            whonow.setText(String.valueOf("X"));
+    }
 
     private void ustawnaO(Button button) {
         button.setText(String.valueOf('O'));
+    }
+    private void again(Button button){
+        button00.setDisable(false);
+        button01.setDisable(false);
+        button02.setDisable(false);
+        button10.setDisable(false);
+        button11.setDisable(false);
+        button12.setDisable(false);
+        button20.setDisable(false);
+        button21.setDisable(false);
+        button22.setDisable(false);
+        button00.setText(String.valueOf(" "));
+        button01.setText(String.valueOf(" "));
+        button02.setText(String.valueOf(" "));
+        button10.setText(String.valueOf(" "));
+        button11.setText(String.valueOf(" "));
+        button12.setText(String.valueOf(" "));
+        button20.setText(String.valueOf(" "));
+        button21.setText(String.valueOf(" "));
+        button22.setText(String.valueOf(" "));
+
+
+for(int i=0;i<fields.size();i++){
+    fields.get(i).setSign(" ");
+}
     }
 
     public void onbutton00Click() {
@@ -50,14 +93,15 @@ public class Controller {
             fields.get(0).setSign("X");
 
         System.out.println(fields.get(0));
-        sprawdzanie();
+
         end=sprawdzanie();
         if(end==true){
             System.out.println("koniec");
 
             blockall();
         }
-
+        dla0();
+        dlaX();
     }
 
     public void onbutton01Click() {
@@ -69,13 +113,15 @@ public class Controller {
             fields.get(1).setSign("X");
 
         System.out.println(fields.get(1));
-        sprawdzanie();
+
         end=sprawdzanie();
         if(end==true){
             System.out.println("koniec");
 
             blockall();
         }
+        dla0();
+        dlaX();
 
     }
 
@@ -89,14 +135,15 @@ public class Controller {
             fields.get(2).setSign("X");
 
         System.out.println(fields.get(2));
-        sprawdzanie();
+
         end=sprawdzanie();
         if(end==true){
             System.out.println("koniec");
 
             blockall();
         }
-
+        dla0();
+        dlaX();
     }
 
     public void onbutton10Click() {
@@ -109,13 +156,15 @@ public class Controller {
             fields.get(3).setSign("X");
 
         System.out.println(fields.get(3));
-        sprawdzanie();
+
         end=sprawdzanie();
         if(end==true){
             System.out.println("koniec");
 
             blockall();
         }
+        dla0();
+        dlaX();
     }
 
     public void onbutton11Click() {
@@ -128,13 +177,15 @@ public class Controller {
             fields.get(4).setSign("X");
 
         System.out.println(fields.get(4));
-        sprawdzanie();
+
         end=sprawdzanie();
         if(end==true){
             System.out.println("koniec");
 
             blockall();
         }
+        dla0();
+        dlaX();
     }
 
     public void onbutton12Click() {
@@ -147,13 +198,15 @@ public class Controller {
             fields.get(5).setSign("X");
 
         System.out.println(fields.get(5));
-        sprawdzanie();
+
         end=sprawdzanie();
         if(end==true){
             System.out.println("koniec");
 
             blockall();
         }
+        dla0();
+        dlaX();
     }
 
     public void onbutton20Click() {
@@ -166,13 +219,15 @@ else
     fields.get(6).setSign("X");
 
         System.out.println(fields.get(6));
-        sprawdzanie();
+
         end=sprawdzanie();
         if(end==true){
             System.out.println("koniec");
 
             blockall();
         }
+        dla0();
+        dlaX();
     }
 
     public void onbutton21Click() {
@@ -184,13 +239,15 @@ else
             fields.get(7).setSign("X");
 
         System.out.println(fields.get(7));
-        sprawdzanie();
+
         end=sprawdzanie();
         if(end==true){
             System.out.println("koniec");
 
             blockall();
         }
+        dla0();
+        dlaX();
     }
 
 
@@ -205,18 +262,21 @@ else
             fields.get(8).setSign("X");
 
         System.out.println(fields.get(8));
-        sprawdzanie();
+
         end=sprawdzanie();
         if(end==true){
             System.out.println("koniec");
 
             blockall();
         }
+        dla0();
+        dlaX();
     }
 
 
     public void ustawBatonik(Button button) {
 
+        whoNow();
         if (a % 2 == 0) {
             ustawnaX(button);
         } else
@@ -231,38 +291,54 @@ else
 
     public boolean sprawdzanie() {
 
-        if (fields.get(0).getSign().equals("O") && fields.get(3).getSign().equals("O") && fields.get(6).getSign().equals("O"))
-            end = true;
-        if (fields.get(0).getSign().equals("X") && fields.get(3).getSign().equals("X") && fields.get(6).getSign().equals("X"))
-            end = true;
-        if (fields.get(1).getSign().equals("O") && fields.get(4).getSign().equals("O") && fields.get(7).getSign().equals("O"))
-            end = true;
-        if (fields.get(1).getSign().equals("X") && fields.get(4).getSign().equals("X") && fields.get(7).getSign().equals("X"))
-            end = true;
-        if (fields.get(2).getSign().equals("O") && fields.get(5).getSign().equals("O") && fields.get(8).getSign().equals("O"))
-            end = true;
-        if (fields.get(2).getSign().equals("X") && fields.get(5).getSign().equals("X") && fields.get(8).getSign().equals("X"))
-            end = true;
-        if (fields.get(0).getSign().equals("O") && fields.get(1).getSign().equals("O") && fields.get(2).getSign().equals("O"))
-            end = true;
-        if (fields.get(0).getSign().equals("X") && fields.get(1).getSign().equals("X") && fields.get(2).getSign().equals("X"))
-            end = true;
-        if (fields.get(3).getSign().equals("O") && fields.get(4).getSign().equals("O") && fields.get(5).getSign().equals("O"))
-            end = true;
-        if (fields.get(3).getSign().equals("X") && fields.get(4).getSign().equals("X") && fields.get(5).getSign().equals("X"))
-            end = true;
-        if (fields.get(6).getSign().equals("O") && fields.get(7).getSign().equals("O") && fields.get(8).getSign().equals("O"))
-            end = true;
-        if (fields.get(6).getSign().equals("X") && fields.get(7).getSign().equals("X") && fields.get(8).getSign().equals("X"))
-            end = true;
-        if (fields.get(0).getSign().equals("O") && fields.get(4).getSign().equals("O") && fields.get(8).getSign().equals("O"))
-            end = true;
-        if (fields.get(0).getSign().equals("X") && fields.get(4).getSign().equals("X") && fields.get(8).getSign().equals("X"))
-            end = true;
-        if (fields.get(2).getSign().equals("O") && fields.get(4).getSign().equals("O") && fields.get(6).getSign().equals("O"))
-            end = true;
-        if (fields.get(2).getSign().equals("X") && fields.get(4).getSign().equals("X") && fields.get(6).getSign().equals("X"))
-            end = true;
+        if (fields.get(0).getSign().equals("O") && fields.get(3).getSign().equals("O") && fields.get(6).getSign().equals("O")){
+            zwyziestwa0++;
+            end = true;}
+        if (fields.get(0).getSign().equals("X") && fields.get(3).getSign().equals("X") && fields.get(6).getSign().equals("X")){
+            zwyciestwaX++;
+            end = true;}
+        if (fields.get(1).getSign().equals("O") && fields.get(4).getSign().equals("O") && fields.get(7).getSign().equals("O")){
+            zwyziestwa0++;
+            end = true;}
+        if (fields.get(1).getSign().equals("X") && fields.get(4).getSign().equals("X") && fields.get(7).getSign().equals("X")){
+            zwyciestwaX++;
+            end = true;}
+        if (fields.get(2).getSign().equals("O") && fields.get(5).getSign().equals("O") && fields.get(8).getSign().equals("O")){
+            zwyziestwa0++;
+            end = true;}
+        if (fields.get(2).getSign().equals("X") && fields.get(5).getSign().equals("X") && fields.get(8).getSign().equals("X")){
+            zwyciestwaX++;
+            end = true;}
+        if (fields.get(0).getSign().equals("O") && fields.get(1).getSign().equals("O") && fields.get(2).getSign().equals("O")){
+            zwyziestwa0++;
+            end = true;}
+        if (fields.get(0).getSign().equals("X") && fields.get(1).getSign().equals("X") && fields.get(2).getSign().equals("X")){
+            zwyciestwaX++;
+            end = true;}
+        if (fields.get(3).getSign().equals("O") && fields.get(4).getSign().equals("O") && fields.get(5).getSign().equals("O")){
+            zwyziestwa0++;
+            end = true;}
+        if (fields.get(3).getSign().equals("X") && fields.get(4).getSign().equals("X") && fields.get(5).getSign().equals("X")){
+            zwyciestwaX++;
+            end = true;}
+        if (fields.get(6).getSign().equals("O") && fields.get(7).getSign().equals("O") && fields.get(8).getSign().equals("O")){
+            zwyziestwa0++;
+            end = true;}
+        if (fields.get(6).getSign().equals("X") && fields.get(7).getSign().equals("X") && fields.get(8).getSign().equals("X")){
+            zwyciestwaX++;
+            end = true;}
+        if (fields.get(0).getSign().equals("O") && fields.get(4).getSign().equals("O") && fields.get(8).getSign().equals("O")){
+            zwyziestwa0++;
+            end = true;}
+        if (fields.get(0).getSign().equals("X") && fields.get(4).getSign().equals("X") && fields.get(8).getSign().equals("X")){
+            zwyciestwaX++;
+            end = true;}
+        if (fields.get(2).getSign().equals("O") && fields.get(4).getSign().equals("O") && fields.get(6).getSign().equals("O")){
+            zwyziestwa0++;
+            end = true;}
+        if (fields.get(2).getSign().equals("X") && fields.get(4).getSign().equals("X") && fields.get(6).getSign().equals("X")){
+            zwyciestwaX++;
+            end = true;}
         return end;
 
     }
@@ -279,7 +355,8 @@ else
     }
     public void onbuttonagain(){
 
-
+        again(buttonagain);
+        end=false;
         }
     }
 
